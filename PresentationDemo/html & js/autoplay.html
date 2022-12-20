@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>autoplay</title>
+</head>
+<body>
+    <audio id="player" controls>
+        <source id="song" src="" type="audio/mp3" />
+    </audio>
+    <li onclick="playSong()" class="current">song1</li>
+    <li onclick="playSong()" class="current2">song2</li>
+    <li onclick="playSong()" class="current3">song3</li>
+    <script>
+        function playSong(){
+            let index = 0;
+            const music=document.getElementById("player");
+            const song = document.getElementById("song");
+            let current = document.querySelector('.current');
+            const playlist = [
+                'audios/1.mp3',
+                'audios/2.mp3',
+                'audios/3.mp3'
+            ];
+            song.src = playlist[index];
+            player.load();
+            player.play();
+            current.innerHTML = playlist[index]
+            // Play Next song when song end
+            player.addEventListener('ended', () => {
+                index += 1;
+                // Check Playlist end
+                index == playlist.length ? (index = 0) : '';
+                current=current+"index";
+                song.src = playlist[index];
+                player.load();
+                player.play();
+                current.innerHTML = playlist[index]
+            });
+        }
+    </script>
+</body>
+</html>
